@@ -16,7 +16,45 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+//
+//        let window = UIWindow(windowScene: windowScene)
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .horizontal
+//
+//        let guideVC = GuideCollectionViewController(collectionViewLayout: layout)
+//        window.rootViewController = guideVC
+//        self.window = window
+//        window.makeKeyAndVisible()
+//
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = MainNaviController()
+        self.window = window
+        window.makeKeyAndVisible()
+        /*
+        if isAppAlreadyLaunchedOnce(){
+            let window = UIWindow(windowScene: windowScene)
+            window.rootViewController = MainNaviController()
+            self.window = window
+            window.makeKeyAndVisible()
+        }else{
+            let window = UIWindow(windowScene: windowScene)
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
+            
+            let guideVC = GuideCollectionViewController(collectionViewLayout: layout)
+            window.rootViewController = guideVC
+            self.window = window
+            window.makeKeyAndVisible()
+
+        }
+ */
+        
+//
+//        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+//        window?.windowScene = windowScene
+//        window?.rootViewController = MainNaviController()
+//        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -50,6 +88,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
+    func isAppAlreadyLaunchedOnce()->Bool{
+        let defaults = UserDefaults.standard
+
+        if let isAppAlreadyLaunchedOnce = defaults.string(forKey: "isAppAlreadyLaunchedOnce"){
+            print("App already launched : \(isAppAlreadyLaunchedOnce)")
+            return true
+        }else{
+            defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+            print("App launched first time")
+            return false
+        }
+    }
 
 }
-

@@ -1,10 +1,11 @@
 //
-//  ViewController.swift
+//  TempViewController.swift
 //  Captur
 //
-//  Created by Kotaro Ono on 2021/01/21.
+//  Created by Kotaro Ono on 2021/03/19.
 //
 
+import Foundation
 import UIKit
 import AVFoundation
 import Photos
@@ -12,7 +13,7 @@ import Vision
 import QuartzCore
 import PhotosUI
 
-class ViewController: UIViewController, UINavigationControllerDelegate {
+class TempViewController: UIViewController, UINavigationControllerDelegate {
 
     /*
      Structure
@@ -73,21 +74,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         return button
     }()
     
-    let infoButton : UIButton = {
-        let button = UIButton()
-        let config = UIImage.SymbolConfiguration(pointSize: 25)
-        let buttonImage = UIImage(systemName: "info.circle", withConfiguration: config)
-        button.setImage(buttonImage, for: .normal)
-        button.tintColor = .orange
-        button.layer.masksToBounds = false
-        button.addTarget(self, action: #selector(infoPressed), for: .touchUpInside)
-//        button.layer.shadowColor = UIColor.systemGray.cgColor
-        button.layer.shadowOpacity = 0.2
-        button.layer.shadowRadius = 2
-        button.layer.shadowOffset = CGSize(width: 2, height: 1)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
     
     let captureButton : UIButton = {
         let button = UIButton()
@@ -109,25 +95,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         
         return button
     }()
-    
-    // info UI
-    // slide 1, base
-    var blurEffectView = UIVisualEffectView()
-    var guideView = UIView()
-    var parentImageView = UIView()
-    var dateLabel = UILabel()
-    var tapSuggestLabel = UILabel()
-    var backgroundUIView = UIView()
-    var mainImageView = UIImageView()
-    
-    // slide 2
-    var cursorView = UIView()
-    
-    // slide 3
-    var imageBoxView = UIView()
-    var calendarImageView = UIImageView()
-    var pinImageView = UIImageView()
-    var albumImageView = UIImageView()
     
     var picker = UIImagePickerController()
     
@@ -307,26 +274,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         ].forEach{ $0.isActive = true }
         self.view.bringSubviewToFront(albumButton)
  
-        // info button
-        view.addSubview(infoButton)
-        [infoButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//         albumButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//         albumButton.trailingAnchor.constraint(equalTo: captureButton.leadingAnchor),
-         infoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: windowWidth*0.3),
-         infoButton.centerYAnchor.constraint(equalTo: captureButton.centerYAnchor),
-         infoButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4),
-         infoButton.heightAnchor.constraint(equalTo: infoButton.widthAnchor)
-        ].forEach{ $0.isActive = true }
-        self.view.bringSubviewToFront(infoButton)
-        
-//        [
-//        captureButton.leadingAnchor.constraint(equalTo: albumButton.trailingAnchor)
-//       ].forEach{ $0.isActive = true }
-        
-        /*
-        captureButton.addTarget(self, action: #selector(captureImage(_:)), for: .touchUpInside)
-        captureButton.isUserInteractionEnabled = true
-        */
     }
     
 // MARK: Rectangle Detection / Processing
@@ -447,278 +394,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 //        UIImageWriteToSavedPhotosAlbum(output, nil, nil, nil)
     }
     
-// MARK: Info
-    @objc func infoPressed(){
-        if !UIAccessibility.isReduceTransparencyEnabled {
-            view.backgroundColor = .clear
-
-            let blurEffect = UIBlurEffect(style: .dark)
-            blurEffectView = UIVisualEffectView(effect: blurEffect)
-            blurEffectView.frame = self.view.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            blurEffectView.alpha = 0
-            view.addSubview(blurEffectView)
-            
-            showPage1()
-        } else {}
-    }
-
-    func showPage1(){
-        setupBasics()
-        setupPhotoCaptureScene()
-        
-        dateLabel.text = "Place your photo on plain background."
-        tapSuggestLabel.text = "Tap to proceed"
-        self.backgroundUIView.alpha = 1
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.7){
-            UIView.animate(withDuration: 0.75) {
-                self.mainImageView.alpha = 1
-            }
-        }
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.showPage2))
-        guideView.addGestureRecognizer(tap)
-    }
-    
-    @objc func showPage2(){
-        guideView.removeGestureRecognizer(guideView.gestureRecognizers![0])
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.showPage3))
-        guideView.addGestureRecognizer(tap)
-        
-        parentImageView.addSubview(cursorView)
-        cursorView.alpha = 0
-        cursorView.backgroundColor = .clear
-        cursorView.translatesAutoresizingMaskIntoConstraints = false
-        cursorView.layer.borderWidth = 3
-        cursorView.layer.cornerRadius = 7
-        cursorView.layer.borderColor = UIColor.orange.cgColor
-
-        [cursorView.widthAnchor.constraint(equalTo: mainImageView.widthAnchor, multiplier: 0.95),
-         cursorView.heightAnchor.constraint(equalTo: mainImageView.heightAnchor, multiplier: 0.88),
-         cursorView.centerXAnchor.constraint(equalTo: parentImageView.centerXAnchor),
-         cursorView.centerYAnchor.constraint(equalTo: parentImageView.centerYAnchor)
-        ].forEach{ $0.isActive = true }
-
-        
-        UIView.animate(withDuration: 0.5) {
-            self.dateLabel.alpha = 0
-            
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75){
-            UIView.animate(withDuration: 1) {
-                self.dateLabel.text = "Capture the photo once it is recognized."
-                self.dateLabel.alpha = 1
-            }
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
-            UIView.animate(withDuration: 1) {
-                
-                self.cursorView.alpha = 1
-            }
-        }
-        
-    }
-    
-    @objc func showPage3(){
-//        backgroundUIView.layer.allowsGroupOpacity = true
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()){
-            UIView.animate(withDuration: 1) {
-                self.parentImageView.alpha = 0
-//                self.cursorView.alpha = 0
-//                self.mainImageView.alpha = 0
-                self.dateLabel.alpha = 0
-            }
-        }
-        
-        
-        // the reason mainImageView and cursorView immediately goes away is these are
-        // edited below, ithink
-        
-        guideView.removeGestureRecognizer(guideView.gestureRecognizers![0])
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.removeGuide))
-        guideView.addGestureRecognizer(tap)
-        
-        guideView.addSubview(imageBoxView)
-        imageBoxView.translatesAutoresizingMaskIntoConstraints = false
-        
-//        dateLabel.text = "Edit the timestamp and location data."
-        
-        imageBoxView.alpha = 0
-//        calendarImageView.alpha = 1
-//        pinImageView.alpha = 1
-        
-        let mainIconSize = view.frame.width * 0.8/3.75
-        let mainConfig = UIImage.SymbolConfiguration(pointSize: mainIconSize)
-        let mainImage = UIImage(systemName: "photo.fill", withConfiguration: mainConfig)
-        mainImageView.image = mainImage
-        mainImageView.tintColor = .orange
-        mainImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let subIconSize = view.frame.width * 0.4/3.75
-        let subConfig = UIImage.SymbolConfiguration(pointSize: subIconSize)
-        
-        let calendarImage = UIImage(systemName: "calendar", withConfiguration: subConfig)
-        calendarImageView.image = calendarImage
-        calendarImageView.tintColor = .orange
-        calendarImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let pinImage = UIImage(systemName: "mappin.and.ellipse", withConfiguration: subConfig)
-        pinImageView.image = pinImage
-        pinImageView.tintColor = .orange
-        pinImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        imageBoxView.addSubview(mainImageView)
-        imageBoxView.addSubview(calendarImageView)
-        imageBoxView.addSubview(pinImageView)
-        
-        /*
-        parentImageView.addSubview(mainImageView)
-        parentImageView.addSubview(calendarImageView)
-        parentImageView.addSubview(pinImageView)
- */
-        [imageBoxView.widthAnchor.constraint(equalTo: guideView.widthAnchor, multiplier: 0.9),
-         imageBoxView.heightAnchor.constraint(equalTo: imageBoxView.widthAnchor, multiplier: 0.65),
-         imageBoxView.centerXAnchor.constraint(equalTo: guideView.centerXAnchor),
-         imageBoxView.centerYAnchor.constraint(equalTo: guideView.centerYAnchor, constant: view.frame.height * -0.13)
-        ].forEach{ $0.isActive = true }
- 
-        [mainImageView.centerXAnchor.constraint(equalTo: imageBoxView.centerXAnchor),
-         mainImageView.centerYAnchor.constraint(equalTo: imageBoxView.centerYAnchor, constant: 0.18*view.frame.width)
-        ].forEach{ $0.isActive = true }
-        
-        [calendarImageView.centerXAnchor.constraint(equalTo: imageBoxView.centerXAnchor, constant: -0.25*view.frame.width),
-         calendarImageView.centerYAnchor.constraint(equalTo: imageBoxView.centerYAnchor, constant: 0.07*view.frame.width)
-        ].forEach{ $0.isActive = true }
-        
-        [pinImageView.centerXAnchor.constraint(equalTo: imageBoxView.centerXAnchor, constant: 0.22*view.frame.width),
-         pinImageView.centerYAnchor.constraint(equalTo: imageBoxView.centerYAnchor, constant: -0.03*view.frame.width)
-        ].forEach{ $0.isActive = true }
-        
-//        UIView.animate(withDuration: 0.5) {
-//            self.dateLabel.alpha = 0
-//
-//        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.75){
-            UIView.animate(withDuration: 1) {
-                self.dateLabel.text = "Edit the timestamp and location data."
-                self.dateLabel.alpha = 1
-            }
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5){
-            UIView.animate(withDuration: 1) {
-                self.imageBoxView.alpha = 1
-            }
-        }
-    }
-    
-    @objc func removeGuide(){
-        
-    }
-    
-    func setupBasics(){
-        
-        view.addSubview(guideView)
-        view.bringSubviewToFront(guideView)
-        
-        guideView.alpha = 0
-        
-        guideView.frame = self.view.bounds
-        
-        guideView.addSubview(parentImageView)
-        guideView.addSubview(dateLabel)
-        guideView.addSubview(tapSuggestLabel)
-        
-        guideView.backgroundColor = .clear
-        
-        parentImageView.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        tapSuggestLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.textColor = .orange
-        tapSuggestLabel.textColor = .orange
-        tapSuggestLabel.isHidden = true
-        
-        dateLabel.font = UIFont(name: "SFProDisplay-Medium", size: 20)
-        dateLabel.textAlignment = .center
-        dateLabel.minimumScaleFactor = 0.5
-        dateLabel.adjustsFontSizeToFitWidth = true
-        
-        tapSuggestLabel.font = UIFont(name: "SFProDisplay-Medium", size: 20)
-        tapSuggestLabel.textAlignment = .center
-        tapSuggestLabel.minimumScaleFactor = 0.5
-        tapSuggestLabel.adjustsFontSizeToFitWidth = true
-        
-        [parentImageView.widthAnchor.constraint(equalTo: guideView.widthAnchor, multiplier: 0.9),
-         parentImageView.heightAnchor.constraint(equalTo: parentImageView.widthAnchor, multiplier: 0.65),
-         parentImageView.centerXAnchor.constraint(equalTo: guideView.centerXAnchor),
-         parentImageView.centerYAnchor.constraint(equalTo: guideView.centerYAnchor, constant: view.frame.height * -0.1)
-        ].forEach{ $0.isActive = true }
-        
-        [dateLabel.topAnchor.constraint(equalTo: parentImageView.bottomAnchor, constant: guideView.frame.height*0.02),
-         dateLabel.widthAnchor.constraint(equalTo: guideView.widthAnchor, multiplier: 0.8),
-         dateLabel.centerXAnchor.constraint(equalTo: guideView.centerXAnchor)
-        ].forEach{ $0.isActive = true }
-        
-        [tapSuggestLabel.centerYAnchor.constraint(equalTo: guideView.centerYAnchor, constant: guideView.frame.height*0.35),
-         tapSuggestLabel.widthAnchor.constraint(equalTo: guideView.widthAnchor, multiplier: 0.3),
-         tapSuggestLabel.centerXAnchor.constraint(equalTo: guideView.centerXAnchor)
-        ].forEach{ $0.isActive = true }
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
-            UIView.animate(withDuration: 0.5) {
-                self.blurEffectView.alpha = 1
-            }
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.25){
-            UIView.animate(withDuration: 0.5) {
-                
-                self.guideView.alpha = 1
-                
-                self.tapSuggestLabel.isHidden = false
-                self.tapSuggestLabel.blink()
-            }
-        }
-    }
-    
-    
-    func setupPhotoCaptureScene(){
-        
-        // backgroundUIView
-        parentImageView.addSubview(backgroundUIView)
-        backgroundUIView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundUIView.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        backgroundUIView.layer.cornerRadius = 7
-        backgroundUIView.alpha = 0
-        
-        [backgroundUIView.widthAnchor.constraint(equalTo: parentImageView.widthAnchor, multiplier: 0.75),
-         backgroundUIView.heightAnchor.constraint(equalTo: backgroundUIView.widthAnchor, multiplier: 0.65),
-         backgroundUIView.centerXAnchor.constraint(equalTo: parentImageView.centerXAnchor),
-         backgroundUIView.centerYAnchor.constraint(equalTo: parentImageView.centerYAnchor)
-        ].forEach{ $0.isActive = true }
-        
-        let iconSize = view.frame.width * 1/3.75
-        let config = UIImage.SymbolConfiguration(pointSize: iconSize)
-        let mainImage = UIImage(systemName: "photo.fill", withConfiguration: config)
-        
-        mainImageView.image = mainImage
-        mainImageView.alpha = 0
-        mainImageView.tintColor = .systemGray2
-//        mainImageView.contentMode = .scaleAspectFit    // super important
-        
-        backgroundUIView.addSubview(mainImageView)
-        mainImageView.translatesAutoresizingMaskIntoConstraints = false
-
-        [mainImageView.centerXAnchor.constraint(equalTo: backgroundUIView.centerXAnchor),
-         mainImageView.centerYAnchor.constraint(equalTo: backgroundUIView.centerYAnchor)
-        ].forEach{ $0.isActive = true }
-        
-    }
-    
 // MARK: UIImagePicker
     @objc func albumPressed(){
         
@@ -740,7 +415,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
 // MARK: Extensions
 
-extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate{
+extension TempViewController : AVCaptureVideoDataOutputSampleBufferDelegate{
     // Notifies the delegate that a new video frame was written
     // Called whenever the output captures and outputs a new video frame
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -790,7 +465,7 @@ extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate{
     }
 }
 
-extension ViewController : UIImagePickerControllerDelegate{
+extension TempViewController : UIImagePickerControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             let editorVC = EditorViewController()
@@ -806,9 +481,6 @@ extension ViewController : UIImagePickerControllerDelegate{
     }
 }
 
-// Uncomment when deleting TempVC
-
-/*
 extension UIImagePickerController {
     open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -846,4 +518,3 @@ extension UILabel {
         alpha = 1
     }
 }
-*/

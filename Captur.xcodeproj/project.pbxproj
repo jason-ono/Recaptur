@@ -7,15 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F81A96D12603C15B00C0002B /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A96D02603C15B00C0002B /* TempViewController.swift */; };
+		F81C936C25C20EF000FED440 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81C936B25C20EF000FED440 /* EditorViewController.swift */; };
+		F82EFDAE25D174AC00C4770E /* CrystalItalic-R6A.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F82EFDAD25D174AC00C4770E /* CrystalItalic-R6A.ttf */; };
+		F82EFDB625D1871F00C4770E /* MainNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82EFDB525D1871E00C4770E /* MainNaviController.swift */; };
+		F82EFDBE25D2857200C4770E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82EFDBD25D2857200C4770E /* MapViewController.swift */; };
+		F82EFDD825D4CD2800C4770E /* GuideCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82EFDD725D4CD2800C4770E /* GuideCollectionViewController.swift */; };
+		F82EFDE725D7D79500C4770E /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F82EFDE625D7D79500C4770E /* SF-Pro-Display-Medium.otf */; };
+		F82EFDEF25D80E7500C4770E /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82EFDEE25D80E7500C4770E /* PageCell.swift */; };
+		F8385FA325C9032D003E4559 /* Segment7-4Gml.otf in Resources */ = {isa = PBXBuildFile; fileRef = F8385FA225C9032D003E4559 /* Segment7-4Gml.otf */; };
 		F84F615A25BA58E100C9C425 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84F615925BA58E100C9C425 /* AppDelegate.swift */; };
 		F84F615C25BA58E100C9C425 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84F615B25BA58E100C9C425 /* SceneDelegate.swift */; };
 		F84F615E25BA58E100C9C425 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84F615D25BA58E100C9C425 /* ViewController.swift */; };
-		F84F616125BA58E100C9C425 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F84F615F25BA58E100C9C425 /* Main.storyboard */; };
 		F84F616425BA58E100C9C425 /* Captur.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F84F616225BA58E100C9C425 /* Captur.xcdatamodeld */; };
 		F84F616625BA58E400C9C425 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F84F616525BA58E400C9C425 /* Assets.xcassets */; };
 		F84F616925BA58E400C9C425 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F84F616725BA58E400C9C425 /* LaunchScreen.storyboard */; };
 		F84F617425BA58E400C9C425 /* CapturTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84F617325BA58E400C9C425 /* CapturTests.swift */; };
 		F84F617F25BA58E400C9C425 /* CapturUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84F617E25BA58E400C9C425 /* CapturUITests.swift */; };
+		F856F09525CC0FB40099811D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F856F09425CC0FB40099811D /* TestViewController.swift */; };
+		F856F0A525CCD6310099811D /* BrowsePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F856F0A425CCD6310099811D /* BrowsePhotoViewController.swift */; };
+		F858C3E225BCD52E00167467 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858C3E125BCD52E00167467 /* PreviewView.swift */; };
+		F8F1541B2603C35100185D04 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F8F1541A2603C35100185D04 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +48,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F81A96D02603C15B00C0002B /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TempViewController.swift; path = Model/TempViewController.swift; sourceTree = "<group>"; };
+		F81C936B25C20EF000FED440 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		F82EFDAD25D174AC00C4770E /* CrystalItalic-R6A.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CrystalItalic-R6A.ttf"; path = "../../../Downloads/crystal-font/CrystalItalic-R6A.ttf"; sourceTree = "<group>"; };
+		F82EFDB525D1871E00C4770E /* MainNaviController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNaviController.swift; sourceTree = "<group>"; };
+		F82EFDBD25D2857200C4770E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F82EFDD725D4CD2800C4770E /* GuideCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewController.swift; sourceTree = "<group>"; };
+		F82EFDE625D7D79500C4770E /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Medium.otf"; path = "../../../../../Library/Fonts/SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
+		F82EFDEE25D80E7500C4770E /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PageCell.swift; path = Captur/PageCell.swift; sourceTree = SOURCE_ROOT; };
+		F8385FA225C9032D003E4559 /* Segment7-4Gml.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Segment7-4Gml.otf"; path = "../../../Downloads/segment7-font/Segment7-4Gml.otf"; sourceTree = "<group>"; };
 		F84F615625BA58E100C9C425 /* Captur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Captur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84F615925BA58E100C9C425 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F84F615B25BA58E100C9C425 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F84F615D25BA58E100C9C425 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F84F616025BA58E100C9C425 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F84F616325BA58E100C9C425 /* Captur.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Captur.xcdatamodel; sourceTree = "<group>"; };
 		F84F616525BA58E400C9C425 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F84F616825BA58E400C9C425 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +71,10 @@
 		F84F617A25BA58E400C9C425 /* CapturUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapturUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84F617E25BA58E400C9C425 /* CapturUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturUITests.swift; sourceTree = "<group>"; };
 		F84F618025BA58E400C9C425 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F856F09425CC0FB40099811D /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		F856F0A425CCD6310099811D /* BrowsePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowsePhotoViewController.swift; sourceTree = "<group>"; };
+		F858C3E125BCD52E00167467 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		F8F1541A2603C35100185D04 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +105,7 @@
 		F84F614D25BA58E100C9C425 = {
 			isa = PBXGroup;
 			children = (
+				F8F1541A2603C35100185D04 /* README.md */,
 				F84F615825BA58E100C9C425 /* Captur */,
 				F84F617225BA58E400C9C425 /* CapturTests */,
 				F84F617D25BA58E400C9C425 /* CapturUITests */,
@@ -101,14 +126,25 @@
 		F84F615825BA58E100C9C425 /* Captur */ = {
 			isa = PBXGroup;
 			children = (
+				F81A96D02603C15B00C0002B /* TempViewController.swift */,
 				F84F615925BA58E100C9C425 /* AppDelegate.swift */,
 				F84F615B25BA58E100C9C425 /* SceneDelegate.swift */,
+				F82EFDB525D1871E00C4770E /* MainNaviController.swift */,
 				F84F615D25BA58E100C9C425 /* ViewController.swift */,
-				F84F615F25BA58E100C9C425 /* Main.storyboard */,
+				F81C936B25C20EF000FED440 /* EditorViewController.swift */,
+				F82EFDBD25D2857200C4770E /* MapViewController.swift */,
+				F858C3E125BCD52E00167467 /* PreviewView.swift */,
+				F82EFDEE25D80E7500C4770E /* PageCell.swift */,
+				F856F09425CC0FB40099811D /* TestViewController.swift */,
+				F82EFDD725D4CD2800C4770E /* GuideCollectionViewController.swift */,
 				F84F616525BA58E400C9C425 /* Assets.xcassets */,
 				F84F616725BA58E400C9C425 /* LaunchScreen.storyboard */,
 				F84F616A25BA58E400C9C425 /* Info.plist */,
 				F84F616225BA58E100C9C425 /* Captur.xcdatamodeld */,
+				F82EFDAD25D174AC00C4770E /* CrystalItalic-R6A.ttf */,
+				F82EFDE625D7D79500C4770E /* SF-Pro-Display-Medium.otf */,
+				F8385FA225C9032D003E4559 /* Segment7-4Gml.otf */,
+				F856F0A425CCD6310099811D /* BrowsePhotoViewController.swift */,
 			);
 			path = Captur;
 			sourceTree = "<group>";
@@ -234,9 +270,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8F1541B2603C35100185D04 /* README.md in Resources */,
 				F84F616925BA58E400C9C425 /* LaunchScreen.storyboard in Resources */,
 				F84F616625BA58E400C9C425 /* Assets.xcassets in Resources */,
-				F84F616125BA58E100C9C425 /* Main.storyboard in Resources */,
+				F82EFDE725D7D79500C4770E /* SF-Pro-Display-Medium.otf in Resources */,
+				F8385FA325C9032D003E4559 /* Segment7-4Gml.otf in Resources */,
+				F82EFDAE25D174AC00C4770E /* CrystalItalic-R6A.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,10 +300,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F82EFDBE25D2857200C4770E /* MapViewController.swift in Sources */,
+				F858C3E225BCD52E00167467 /* PreviewView.swift in Sources */,
+				F82EFDEF25D80E7500C4770E /* PageCell.swift in Sources */,
+				F856F0A525CCD6310099811D /* BrowsePhotoViewController.swift in Sources */,
+				F856F09525CC0FB40099811D /* TestViewController.swift in Sources */,
 				F84F615E25BA58E100C9C425 /* ViewController.swift in Sources */,
+				F81A96D12603C15B00C0002B /* TempViewController.swift in Sources */,
 				F84F615A25BA58E100C9C425 /* AppDelegate.swift in Sources */,
 				F84F616425BA58E100C9C425 /* Captur.xcdatamodeld in Sources */,
 				F84F615C25BA58E100C9C425 /* SceneDelegate.swift in Sources */,
+				F82EFDB625D1871F00C4770E /* MainNaviController.swift in Sources */,
+				F81C936C25C20EF000FED440 /* EditorViewController.swift in Sources */,
+				F82EFDD825D4CD2800C4770E /* GuideCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,14 +348,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F84F615F25BA58E100C9C425 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F84F616025BA58E100C9C425 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F84F616725BA58E400C9C425 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -443,6 +483,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RP9N3JD73C;
 				INFOPLIST_FILE = Captur/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,7 +491,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jasonono.Captur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -462,6 +503,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RP9N3JD73C;
 				INFOPLIST_FILE = Captur/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -469,7 +511,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jasonono.Captur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
