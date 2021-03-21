@@ -1,20 +1,24 @@
 # Recaptur
 
-Check out the demo video in HD: https://drive.google.com/file/d/1trLvH05VblkAQIuu-ghBhJW9UMEaJCMP/view?usp=sharing    
+ Pers. Correction                     |  Date Input                | Map View  | Result on Photos
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+ ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/pC%20(4).gif?raw=true) |  ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/date%20(1).gif?raw=true)  |  ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/sydney.gif?raw=true) | ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/result.gif?raw=true) 
+
+Check out this demo video in HD from [this link](https://drive.google.com/file/d/1trLvH05VblkAQIuu-ghBhJW9UMEaJCMP/view?usp=sharing). 
 
 Recaptur is an iOS app that allows you to
 1. Scan physical photos with **real-time rectangle detection** & **perspective correction**
-2. Save the image with **custom timestamp** and **location data**
+2. Save the image with **user-selected timestamp** and **location data**
 
 ## Background
 
 There are tons of apps today that allow you to scan physical photos, with optimized rectangle detection and perspective correction. 
 
-But I always wished if there were a way to **capture the old photos I have with original date**, and even **the location data**, as though we had smartphones back when we took the picture—so **I created just that!**
+But I always wished if there were a way to **capture the old photos I have with original date**, and even **the location data**, as though I had a smartphone back when I took the picture as a child—so **I created just that!**
 
-Through this app, you can **scan a photo**, then **select the date and location of your choice**. 
+Through this app, you can **scan a photo**, then **save it with the date and location of your choice**. 
 
-After you saved your photo, in the Photos app, look for the photo. You can check the **"Places" map**, or the **timeline**. You can see that the timestamp and location you selected are **reflected instantly**.
+After you saved your photo, in the Photos app, in **"Places" map**, or on the **timeline**, you can see that the timestamp and location you selected are **reflected instantly**.
 
 ## How it works
 

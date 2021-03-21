@@ -16,6 +16,7 @@ class MainNaviController: UINavigationController, UITabBarControllerDelegate{
         if isAppAlreadyLaunchedOnce(){
             // set this back to ViewController()
             let firstVC = TempViewController()
+            // let firstVC = ViewController()
             self.viewControllers.append(firstVC)
             vcArray.append(firstVC)
             self.navigationBar.tintColor = .orange
@@ -24,6 +25,7 @@ class MainNaviController: UINavigationController, UITabBarControllerDelegate{
         }else{
             // set this back to ViewController()
             let firstVC = TempViewController()
+            // let firstVC = ViewController()
             self.viewControllers.append(firstVC)
             vcArray.append(firstVC)
             self.navigationBar.tintColor = .orange
