@@ -1,5 +1,7 @@
 # Recaptur
 
+![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/small.png?raw=true)
+
  Pers. Correction                     |  Date Input                | Map View  | Result on Photos
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
  ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/pC%20(4).gif?raw=true) |  ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/date%20(1).gif?raw=true)  |  ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/sydney.gif?raw=true) | ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/result.gif?raw=true) 
