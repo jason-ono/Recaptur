@@ -304,6 +304,8 @@ class EditorViewController: UIViewController {
 // MARK: Button functions
     
     @objc func showDatePicker(){
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        
         datePicker.alpha = 0
         toolBar.alpha = 0
         
@@ -338,6 +340,9 @@ class EditorViewController: UIViewController {
     }
     
     @objc func savePressed(){
+        navigationItem.rightBarButtonItem?.isEnabled = true
+            
+            // UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveMeta))
         
         let formatter = DateFormatter()
         formatter.dateFormat = "MM-dd-y"

@@ -14,19 +14,19 @@ Recaptur is an iOS app that allows you to
 
 ## Background
 
-There are tons of apps today that allow you to scan physical photos, with optimized rectangle detection and perspective correction. 
+There are tons of apps today that allow you to scan physical photos with optimized rectangle detection and perspective correction. 
 
-But I always wished if there were a way to **capture the old photos I have with original date**, and even **the location data**, as though I had a smartphone back when I took the picture as a child—so **I created just that!**
+But I always wished if there were a way to **capture the old photos I have with original date** and **location data**, as though I had a smartphone back when I took those pictures—so **I created just that!**
 
 Through this app, you can **scan a photo**, then **save it with the date and location of your choice**. 
 
-After you saved your photo, in the Photos app, in **"Places" map**, or on the **timeline**, you can see that the timestamp and location you selected are **reflected instantly**.
+After you saved your photo, you should be able to see all the changes reflected in Photos app.
 
 ## How it works
 
-I created this app **without the Interface Builder**. All features have been implemented **programmatically**.
+I created this app **without using the Interface Builder**. All features have been implemented **programmatically**.
 
-The bulk of AV-related methods Recaptur comes from **AVFoundation** framework. 
+The bulk of AV-related methods in this project comes from **AVFoundation** framework. 
 
 The app has a Snapchat-like **full-screen camera**. The app displays **real-time rectangle detection** while the camera is on, and **perspective correction** is applied on the extracted image as soon as the shutter is pressed.
 
