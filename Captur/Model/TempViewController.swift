@@ -13,7 +13,7 @@ import Vision
 import QuartzCore
 import PhotosUI
 
-class TempViewController: UIViewController, UINavigationControllerDelegate {
+class TempViewController: UIViewController, UINavigationControllerDelegate, CLLocationManagerDelegate {
 
     /*
      Structure
@@ -117,6 +117,9 @@ class TempViewController: UIViewController, UINavigationControllerDelegate {
     let windowWidth: CGFloat = UIScreen.main.bounds.width
     let windowHeight: CGFloat = UIScreen.main.bounds.height
     
+    // location prompt
+    var locationManager = CLLocationManager()
+    
 // MARK: Overriden Methods
 
     // VDL
@@ -125,6 +128,7 @@ class TempViewController: UIViewController, UINavigationControllerDelegate {
         
         startCaptureSession()
         setupView()
+        setupLocationManager()
     }
     
     override func viewDidLayoutSubviews() {
@@ -143,7 +147,16 @@ class TempViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @objc func captureImage(_ sender: UIButton?){
-        isTapped = true
+        let photos = PHPhotoLibrary.authorizationStatus()
+        if (photos == .notDetermined) {
+                PHPhotoLibrary.requestAuthorization({status in
+                    if status == .authorized{
+                        self.isTapped = true
+                    } else {return}
+                })
+        }else{
+            isTapped = true
+        }
     }
     
 // MARK: Recording Methods
@@ -392,6 +405,21 @@ class TempViewController: UIViewController, UINavigationControllerDelegate {
         
 //        self.present(editorVC, animated: false, completion: nil)
 //        UIImageWriteToSavedPhotosAlbum(output, nil, nil, nil)
+    }
+    
+    func setupLocationManager(){
+        locationManager.delegate = self
+        /*
+        let locationPerm = CLLocationManager.authorizationStatus()
+        if locationPerm == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        }
+        */
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+        PHPhotoLibrary.requestAuthorization { (PHAuthorizationStatus) in }
     }
     
 // MARK: UIImagePicker
