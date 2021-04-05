@@ -1,10 +1,12 @@
-# Recaptur
+# Recaptur: Scan & Edit Metadat‪a‬
 
 ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/small.png?raw=true)
 
  Pers. Correction                     |  Date Input                | Map View  | Result on Photos
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
  ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/pC%20(4).gif?raw=true) |  ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/date%20(1).gif?raw=true)  |  ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/sydney.gif?raw=true) | ![](https://github.com/jason-ono/Story/blob/master/recaptur_assets/result.gif?raw=true) 
+
+***Now available on [App Store for free](https://apps.apple.com/us/app/recaptur-scan-edit-metadata/id1559885464)!***
 
 Check out this demo video in HD from [this link](https://drive.google.com/file/d/1trLvH05VblkAQIuu-ghBhJW9UMEaJCMP/view?usp=sharing). 
 
