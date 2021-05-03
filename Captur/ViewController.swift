@@ -65,7 +65,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         button.tintColor = .orange
         button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(albumPressed), for: .touchUpInside)
-//        button.layer.shadowColor = UIColor.systemGray.cgColor
         button.layer.shadowOpacity = 0.2
         button.layer.shadowRadius = 2
         button.layer.shadowOffset = CGSize(width: 2, height: 1)
@@ -81,7 +80,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         button.tintColor = .orange
         button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(infoPressed), for: .touchUpInside)
-//        button.layer.shadowColor = UIColor.systemGray.cgColor
         button.layer.shadowOpacity = 0.2
         button.layer.shadowRadius = 2
         button.layer.shadowOffset = CGSize(width: 2, height: 1)

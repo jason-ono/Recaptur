@@ -14,6 +14,14 @@ import MapKit
 
 class EditorViewController: UIViewController {
 
+    /*
+     EditorViewController completes the following task
+     - set up the UI for viewing a photo and editing its metadata
+     - passes in a photo taken and displays it
+     - provides buttons to initiate new windows for metadata edit (location & timestamp)
+     - saves a photo to photo library with user-provided metadata
+     */
+    
 // MARK: Variables
     
     // utility
@@ -23,15 +31,11 @@ class EditorViewController: UIViewController {
     
     // UI
     var image : UIImage!
-    
     var imageView = UIImageView()
-    
     var parentStackView = UIStackView()
-    
     var labelStackView = UIStackView()
     var dateLabel = UILabel()
     var locationLabel = UILabel()
-
     var dateButtonParentView = UIView()
     var dateButton = UIButton()
     var locationButtonParentView = UIView()
@@ -40,7 +44,6 @@ class EditorViewController: UIViewController {
     // Date
     var defaultDate : Date?
     var userDate = Date()
-    
     var datePicker = UIDatePicker()
     var toolBar = UIToolbar()
     
@@ -60,6 +63,11 @@ class EditorViewController: UIViewController {
     }()
     
 // MARK: Methods
+    
+    /*
+     - initiates location manager
+     - calls UI setup funcs
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.requestWhenInUseAuthorization()
@@ -67,18 +75,28 @@ class EditorViewController: UIViewController {
         setupLocationManager()
     }
     
-    
+    /*
+     - called in previous VC
+     - passes in photo taken as a local field
+     */
     func passPhoto(_ rectImage: UIImage){
         self.image = rectImage
         setupImageView()
     }
 
+    /*
+     - set the passed in photo as the image
+     */
     func setupImageView(){
         imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    /*
+     - UI setup
+     - AutoLayout setup
+     */
     func setupUI(){
         // background
         view.backgroundColor = .black
@@ -92,20 +110,14 @@ class EditorViewController: UIViewController {
         setupDateLabelAndPicker()
         setupLocationLabel()
         
-        // temp
         [dateButtonParentView, locationButtonParentView, labelStackView
         ].forEach{ $0.translatesAutoresizingMaskIntoConstraints = false }
         
         parentStackView.axis = .horizontal
-//        parentStackView.distribution = .fill
         parentStackView.distribution = .equalSpacing
         
         labelStackView.axis = .vertical
         labelStackView.distribution = .fillEqually
-        
-//        dateButtonParentView.backgroundColor = .blue
-//        locationButtonParentView.backgroundColor = .red
-//        labelStackView.backgroundColor = .yellow
         
         // add to views
         view.addSubview(imageView)
@@ -120,15 +132,6 @@ class EditorViewController: UIViewController {
         
         labelStackView.addArrangedSubview(dateLabel)
         labelStackView.addArrangedSubview(locationLabel)
-        
-        
-        /*
-        labelStackView.addSubview(dateLabel)
-        labelStackView.addSubview(locationLabel)
-        
-        dateButtonParentView.addSubview(dateButton)
-        locationButtonParentView.addSubview(locationButton)
-            */
  
         // AutoLayout
         [imageView.widthAnchor.constraint(equalToConstant: windowWidth),
@@ -170,8 +173,10 @@ class EditorViewController: UIViewController {
         }
     }
     
+    /*
+     - to enable AutoLayout
+     */
     func setupButtonView(){
-//        parentStackView.backgroundColor = .systemGray
         parentStackView.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -187,7 +192,10 @@ class EditorViewController: UIViewController {
         
         let buttonLocationImage = UIImage(systemName: "mappin.and.ellipse", withConfiguration: config)
         locationButton.setImage(buttonLocationImage, for: .normal)
-        // locationpressed should actually bring about a new map window, remember to migrate the method to the map
+        /*
+            locationPressed should actually bring about a new map window
+            remember to migrate the method to the map
+        */
         locationButton.addTarget(self, action: #selector(locationPressed), for: .touchUpInside)
         locationButton.tintColor = .orange
         locationButton.translatesAutoresizingMaskIntoConstraints = false
@@ -195,7 +203,6 @@ class EditorViewController: UIViewController {
     
     func setupDateLabelAndPicker(){
         // Label
-//        dateLabel.backgroundColor = .systemGray4
         dateLabel.font = UIFont(name: "CrystalItalic-", size: 35)
         dateLabel.textAlignment = .center
         dateLabel.minimumScaleFactor = 0.5
@@ -219,26 +226,6 @@ class EditorViewController: UIViewController {
         dateLabel.text = formatter.string(from: defaultDate!)
         datePicker.date = defaultDate!
     }
-//
-//    // medium.com/swift2go/swift-101-convert-coordinates-to-city-names-and-back-bdd2d40e0f8a
-//    func getPlace(for location: CLLocation, completion: @escaping (CLPlacemark?) -> Void){
-//        let geocoder = CLGeocoder()
-//        geocoder.reverseGeocodeLocation(location) { placemarks, error in
-//            guard error == nil else {
-//                print("*** Error in \(#function): \(error!.localizedDescription)")
-//                completion(nil)
-//                return
-//            }
-//
-//            guard let placemark = placemarks?[0] else {
-//                print("*** Error in \(#function): placemark is nil")
-//                completion(nil)
-//                return
-//            }
-//
-//            completion(placemark)
-//        }
-//    }
     
     func setupLocationManager(){
         locationManager.delegate = self
@@ -254,7 +241,7 @@ class EditorViewController: UIViewController {
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
             if let validPlacemarks = placemarks{
                 if let validFirstItem = validPlacemarks.first{
-                    // for US address, set "cityName, XX" style
+                    // for US address, set "cityName, XX" where XX stands for state
                     if validFirstItem.country == "United States"{
                         locationString = "\(validFirstItem.locality!), \(validFirstItem.administrativeArea!)"
                         self.locationLabel.text = locationString.uppercased()
@@ -278,9 +265,6 @@ class EditorViewController: UIViewController {
                 }
             }
         }
-//        if locationManager.location != nil{
-//            userLocation = locationManager.location!
-//        }
     }
     
     func setupLocationLabel(){
@@ -324,8 +308,6 @@ class EditorViewController: UIViewController {
         toolBar.translatesAutoresizingMaskIntoConstraints = false
         [toolBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
          toolBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//         toolBar.heightAnchor.constraint(equalToConstant: windowHeight*0.05),
-//         toolBar.topAnchor.constraint(equalTo: datePicker.topAnchor, constant: -windowHeight*0.03),
          toolBar.bottomAnchor.constraint(equalTo: datePicker.topAnchor),
         ].forEach{ $0.isActive = true }
         
@@ -341,9 +323,6 @@ class EditorViewController: UIViewController {
     
     @objc func savePressed(){
         navigationItem.rightBarButtonItem?.isEnabled = true
-            
-            // UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveMeta))
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "MM-dd-y"
         userDate = datePicker.date
@@ -355,30 +334,35 @@ class EditorViewController: UIViewController {
         }
     }
     
+    /*
+        - called by navigationItem.rightBarButtonItem
+        - saves the scannd image, then fetch it immediately after as the newest item in photo
+          library to edit its metadata with user-provided information
+     */
     @objc func saveMeta(){
-        // https://qiita.com/WorldDownTown/items/2b5a72e41a95763727bb
+        // generate tapback when save is pressed
         if #available(iOS 10.0, *), let generator = feedbackGenerator as? UIImpactFeedbackGenerator {
             generator.impactOccurred()
         }
+        // save the image once to the photo library
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        
         // wait for the system to renew the library
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
+            // make change in the photolibrary
             PHPhotoLibrary.shared().performChanges({
-    //            let crReq = PHAssetChangeRequest.creationRequestForAsset(from: self.image)
                 let fetchOptions = PHFetchOptions()
+                // re-fetch the latest image in the library, which is the image we just saved
                 fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
                 fetchOptions.fetchLimit = 1
-                
                 let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
-
-    //            let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: [imageIdentifier], options: nil)
+                // error check
                 if(fetchResult.count == 0){
-                    print("otsu")
+                    print("fetch error")
                 }else{
+                    // make a request object
                     let asset = fetchResult.firstObject
                     let request = PHAssetChangeRequest(for: asset!)
-                    
+                    // re-write the metadata with user-provided data
                     request.creationDate = self.userDate
                     request.location = self.userLocation
                 }
@@ -388,25 +372,11 @@ class EditorViewController: UIViewController {
                 }
             })
         }
-        // wait til the photo library syncs
+        // wait until the photo library syncs
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7){
             self.navigationController?.popViewController(animated: true)
         }
     }
-    
-    // CrystalItalic-
-    /*
-    func fontConfirm(){
-        for family: String in UIFont.familyNames
-               {
-                   print(family)
-                   for names: String in UIFont.fontNames(forFamilyName: family)
-                   {
-                       print("== \(names)")
-                   }
-               }
-    }
-    */
     
     // Make the navigation bar background clear
     override func viewWillAppear(_ animated: Bool) {
@@ -424,32 +394,18 @@ class EditorViewController: UIViewController {
     }
 }
 
-extension EditorViewController : CLLocationManagerDelegate {
-    /*
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if locations.first != nil{
-            userLocation = locations.first!
-//            let latitude = userLocation.coordinate.latitude
-//            let longitude = userLocation.coordinate.longitude
-        }
-
-    }
- */
-}
+extension EditorViewController : CLLocationManagerDelegate {}
 
 extension EditorViewController : MapViewControllerDelegate{
     func passData(_ location: CLLocation) {
-        print("kim")
         userLocation = location
         processLocationData(userLocation)
     }
-    
-    
 }
 
+// decorative
 extension UIButton {
     func addInnerShadow() {
-        print("chinchin")
         let innerShadow = CALayer()
         innerShadow.frame = bounds
 
@@ -457,7 +413,6 @@ extension UIButton {
         let radius = self.frame.size.height/2
         let path = UIBezierPath(roundedRect: innerShadow.bounds.insetBy(dx: -1, dy:-1), cornerRadius:radius)
         let cutout = UIBezierPath(roundedRect: innerShadow.bounds, cornerRadius:radius).reversing()
-
 
         path.append(cutout)
         innerShadow.shadowPath = path.cgPath
@@ -471,144 +426,3 @@ extension UIButton {
         layer.addSublayer(innerShadow)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-PHPhotoLibrary.shared().performChanges({
-    let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: [imageIdentifier], options: nil)
-    if(fetchResult.count == 0){
-        print("otsu")
-    }else{
-        let asset = fetchResult.firstObject
-        let request = PHAssetChangeRequest(for: asset!)
-        request.creationDate = Date(timeIntervalSince1970: 1612122761)
-    }
-}, completionHandler: {_, error in
-    if error != nil{
-        print("error occured")
-    }
-})
-*/
-
-/*
-func saveImageWithImageData(data: NSData, properties: NSDictionary, completion: (_ data: NSData, _ path: NSURL) -> Void) {
-
-    let imageRef: CGImageSource = CGImageSourceCreateWithData((data as CFData), nil)!
-    let uti: CFString = CGImageSourceGetType(imageRef)!
-    let dataWithEXIF: NSMutableData = NSMutableData(data: data as Data)
-    let destination: CGImageDestination = CGImageDestinationCreateWithData((dataWithEXIF as CFMutableData), uti, 1, nil)!
-
-    CGImageDestinationAddImageFromSource(destination, imageRef, 0, (properties as CFDictionary))
-    CGImageDestinationFinalize(destination)
-
-    let paths: [String] = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-    let savePath: String = (paths[0] as AnyObject).appendingPathComponent("exif.jpg")
-
-    let manager: FileManager = FileManager.default
-    manager.createFile(atPath: savePath, contents: dataWithEXIF as Data, attributes: nil)
-
-    completion(dataWithEXIF,NSURL(string: savePath)!)
-
-    print("image with EXIF info converting to NSData: Done! Ready to upload! ")
-
-}
-*/
-
-/*
- AutoLauout Cheat Sheet
- Source: https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/AnatomyofaConstraint.html
- - Size attributes
-    - i.e. height/width
-    - used to specify how large an item is
-    - NO indication of its location
- - Location attributes
-    - i.e. leading/trailing, right/left, and top/bottom
-    - used to specify the location of an item relative to something else
-    - NO indication of the item’s size
- - Rules
-    - You cannot constrain a size attribute to a location attribute
-    - You cannot assign constant values to location attributes
-    - For location attributes, you cannot constrain vertical attributes to horizontal attributes.
-    - For location attributes, no mixup of leading/trailing & left/right
- 
- */
-
-
-
-/*
- function that once worked
- 
- @objc func saveMeta(){
-     var imageIdentifier = ""
-     PHPhotoLibrary.shared().performChanges({
-         let crReq = PHAssetChangeRequest.creationRequestForAsset(from: self.image)
-         let plHold = crReq.placeholderForCreatedAsset
-         imageIdentifier = plHold!.localIdentifier
-         
-         let fetchOptions = PHFetchOptions()
-         fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
-         fetchOptions.fetchLimit = 3
-         
-         let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
-
-//            let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: [imageIdentifier], options: nil)
-         if(fetchResult.count == 0){
-             print("otsu")
-         }else{
-             let asset = fetchResult.firstObject
-             let request = PHAssetChangeRequest(for: asset!)
-             
-             request.creationDate = Date(timeIntervalSince1970: 1612122761)
-             
-         }
-     }, completionHandler: {_, error in
-         if error != nil{
-             print("error occured")
-         }
-     })
-     
-     /*
-     PHPhotoLibrary.shared().performChanges({
-         let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: [imageIdentifier], options: nil)
-         if(fetchResult.count == 0){
-             print("otsu")
-         }else{
-             let asset = fetchResult.firstObject
-             let request = PHAssetChangeRequest(for: asset!)
-             request.creationDate = Date(timeIntervalSince1970: 1612122761)
-         }
-     }, completionHandler: {_, error in
-         if error != nil{
-             print("error occured")
-         }
-     })
-     */
- }
- */
