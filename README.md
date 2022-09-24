@@ -35,8 +35,3 @@ The app has a Snapchat-like **full-screen camera**. The app displays **real-time
 The processed image gets exported to the editor screen as an **UIImage** object. In the editor screen, user saves a location data as a **CLLocation** object through **MKMapView**. The timestamp is saved as a **Date** object through **UIDatePicker**.
 
 Lastly, the image data is saved to the Photo Library through **UIImageWriteToSavedPhotosAlbum** method. Immediately after, **PHAssetChangeRequest** fetches the newest photo in the album, and overwrites the metadata with user-provided timestamp and location data.
-
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
