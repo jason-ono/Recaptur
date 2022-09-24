@@ -8,8 +8,6 @@
 
 ***Now available on [App Store for free](https://apps.apple.com/us/app/recaptur-scan-edit-metadata/id1559885464)!***
 
-Check out this demo video in HD from [this link](https://drive.google.com/file/d/1trLvH05VblkAQIuu-ghBhJW9UMEaJCMP/view?usp=sharing). 
-
 Recaptur is an iOS app that allows you to
 1. Scan physical photos with **real-time rectangle detection** & **perspective correction**
 2. Save the image with **user-selected timestamp** and **location data**
